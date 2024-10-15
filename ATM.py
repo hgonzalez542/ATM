@@ -1,5 +1,11 @@
+# Name: Hector M Gonzalez
+# Class: CompSci 230 ~ Lecture 02
+# Instructor : Omar Rivera Morales
+# Date: 10/14/2024
+
+
 class ATM:
-    def __init__(self):
+    def __init__(self): # Fixed account info for authentication
         self.account_number = "99999230"
         self.password = "0230"
         self.check_balance = 1000.00
@@ -7,8 +13,8 @@ class ATM:
         self.transactions = []
         self.transaction_count = 0
 
-    def authenticate_user(self):
-        for _ in range(3):
+    def authenticate_user(self): # Authentication Process
+        for _ in range(3): # Range of times the user can try to input info before failure
             acc_num = input("Enter account number: ")
             pwd = input("Enter password: ")
             if acc_num == self.account_number and pwd == self.password:
@@ -19,7 +25,7 @@ class ATM:
         print("Maximum number of attempts reached.")
         return False
 
-    def display_menu(self):
+    def display_menu(self): # ATM Menu 
         print("\nATM Menu:")
         print("1. Make deposits")
         print("2. Make withdrawals")
@@ -28,7 +34,7 @@ class ATM:
         print("5. Exit")
         return input("Select an option (1-5): ")
 
-    def process_menu(self, selection):
+    def process_menu(self, selection): # For UI purposes
         if selection == '1':
             self.process_deposit()
         elif selection == '2':
@@ -43,7 +49,7 @@ class ATM:
             return False
         return True
 
-    def process_deposit(self):
+    def process_deposit(self): # Deposit Process ~ Checking or Savings
         account_type = input("Which account to deposit into (check/savings)? ").strip().lower()
         amount = float(input("Enter deposit amount: "))
         if amount >= 0:
@@ -60,7 +66,7 @@ class ATM:
         else:
             print("Deposit amount must be at least $0.00.")
 
-    def process_withdrawal(self):
+    def process_withdrawal(self): # Withdrawal Process for either or acc
         account_type = input("Which account to withdraw from (check/savings)? ").strip().lower()
         amount = float(input("Enter withdrawal amount: "))
         if amount >= 0 and amount <= 400:
@@ -77,7 +83,7 @@ class ATM:
         else:
             print("Withdrawal amount must be between $0.00 and $400.00.")
 
-    def process_transfer(self):
+    def process_transfer(self): # Transfer Process
         source_account = input("Which account to transfer from (check/savings)? ").strip().lower()
         dest_account = input("Which account to transfer to (check/savings)? ").strip().lower()
         
