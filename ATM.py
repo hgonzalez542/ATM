@@ -36,21 +36,21 @@ class ATM:
 
     def process_menu(self, selection): # For UI purposes
         if selection == '1':
-            self.process_deposit()
+            self.deposit()
         elif selection == '2':
-            self.process_withdrawal()
+            self.withdrawal()
         elif selection == '3':
-            self.process_transfer()
+            self.transfer()
         elif selection == '4':
-            self.display_balance()
+            self.balance()
         elif selection == '5':
-            self.display_receipt()
-            print("Exiting. Thank you for using the ATM!")
+            self.receipt()
+            print("Exiting. Thank you for using the ATM Virtual Application!")
             return False
         return True
 
-    def process_deposit(self): # Deposit Process ~ Checking or Savings
-        account_type = input("Which account to deposit into (check/savings)? ").strip().lower()
+    def deposit(self): # Deposit Process ~ Checking or Savings
+        account_type = input("Which account would you like to deposit into (check/savings)? ").strip().lower()
         amount = float(input("Enter deposit amount: "))
         if amount >= 0:
             if account_type == "check":
@@ -66,8 +66,8 @@ class ATM:
         else:
             print("Deposit amount must be at least $0.00.")
 
-    def process_withdrawal(self): # Withdrawal Process for either or acc
-        account_type = input("Which account to withdraw from (check/savings)? ").strip().lower()
+    def withdrawal(self): # Withdrawal Process for either or acc
+        account_type = input("Which account would you like to withdraw from (check/savings)? ").strip().lower()
         amount = float(input("Enter withdrawal amount: "))
         if amount >= 0 and amount <= 400:
             if account_type == "check" and self.check_balance >= amount:
@@ -83,8 +83,8 @@ class ATM:
         else:
             print("Withdrawal amount must be between $0.00 and $400.00.")
 
-    def process_transfer(self): # Transfer Process
-        source_account = input("Which account to transfer from (check/savings)? ").strip().lower()
+    def transfer(self): # Transfer Process
+        source_account = input("Which account  would you like to transfer from (check/savings)? ").strip().lower()
         dest_account = input("Which account to transfer to (check/savings)? ").strip().lower()
         
         if source_account == dest_account:
@@ -111,11 +111,11 @@ class ATM:
         else:
             print("Insufficient funds or invalid account type.")
 
-    def display_balance(self):
+    def balance(self):
         print(f"Check Balance: ${self.check_balance:.2f}")
         print(f"Savings Balance: ${self.savings_balance:.2f}")
 
-    def display_receipt(self):
+    def receipt(self):
         print("\nTransaction Receipt:")
         print("TransactionNumber AccountType TransactionAmount")
         for transaction in self.transactions:
